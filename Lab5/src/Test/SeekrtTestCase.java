@@ -12,7 +12,7 @@ public class SeekrtTestCase {
 	
 	@Test
 	public void TestRight() {
-		int[] arr = {12, 8, 4, 5, 2, 10};
+		int[] arr = {8,95,3,4,6,3,4,5,8};
 		res = std.FindCountToDrop(arr);
         assertEquals(3, (int)res);
 	}
