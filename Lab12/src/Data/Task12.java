@@ -33,6 +33,10 @@ public class Task12 {
 		String sBook = book.toString();		
 		System.out.println(sBook);
 		
+		Book book2 = book.clone();
+		book.setAuthor("Pushkin");
+		System.out.println(book2.getAuthor());
+		
 		}
 
 }

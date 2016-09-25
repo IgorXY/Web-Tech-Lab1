@@ -1,6 +1,6 @@
 package Logic;
 
-public class Book {
+public class Book implements Cloneable{
 	private String title;
 	private String author;
 	private int price;
@@ -70,6 +70,13 @@ public class Book {
 		return res;
 	}
 	
-	
+	public Book clone(){
+		Book cloneBook = new Book();
+		cloneBook.setAuthor(author);
+		cloneBook.setEdition(edition);
+		cloneBook.setPrice(price);
+		cloneBook.setTitle(title);
+		return cloneBook;
+	}
 
 }

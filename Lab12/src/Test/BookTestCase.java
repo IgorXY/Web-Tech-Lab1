@@ -58,5 +58,14 @@ public class BookTestCase {
 		res += "Edition: 1";
 		assertTrue(bookString.equals(res));
 	}
-
+	
+	@Test
+	public void TestClone() {
+		book1.setAuthor("Igor");
+		book1.setTitle("Java for students");
+		book1.setPrice(50000);
+		book1.setEdition(1);
+		book2 = book1.clone();
+		assertTrue(book1.equals(book2));
+	}
 }
