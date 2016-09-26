@@ -39,7 +39,11 @@ public class Book {
 	public int getEdition(){
 		return edition;
 	}
-	public boolean equals(Book book){
+	@Override
+	public boolean equals(Object object){
+		if(!(object instanceof Book))
+			return false;
+		Book book = (Book)object;
 		if(!(this.title.equals(book.getTitle())))
 				return false;
 		if(!(this.author.equals(book.getAuthor())))
@@ -48,9 +52,10 @@ public class Book {
 			return false;
 		if(this.edition != book.getEdition())
 			return false;
-		return true;
+		return true;		
 	}
 	
+	@Override
 	public int hashCode(){
 		int res = 0;
 		for(int i =0 ;i<title.length(); i++)
@@ -62,6 +67,7 @@ public class Book {
 		return res;
 	}
 	
+	@Override
 	public String toString(){
 		String res = "Title: \""+title+"\", ";
 		res += "Author: \""+author+"\", ";

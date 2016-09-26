@@ -21,7 +21,11 @@ public class ProgrammerBook extends Book{
 		return level;
 	}
 	
-	public boolean equals(ProgrammerBook book){
+	@Override
+	public boolean equals(Object object){
+		if(!(object instanceof ProgrammerBook))
+			return false;
+		ProgrammerBook book = (ProgrammerBook) object;
 		if(super.equals(book) == false)
 			return false;		
 		if(!(this.language.equals(book.getLanguage())))
@@ -31,6 +35,7 @@ public class ProgrammerBook extends Book{
 		return true;
 	}
 	
+	@Override
 	public int hashCode(){
 		int res = 0;
 		res = super.hashCode();
@@ -40,6 +45,7 @@ public class ProgrammerBook extends Book{
 		return res;
 	}
 	
+	@Override
 	public String toString(){
 		String res = super.toString();
 		res += ", Language: \""+language+"\", ";

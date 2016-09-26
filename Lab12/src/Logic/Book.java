@@ -1,6 +1,8 @@
 package Logic;
 
 public class Book implements Cloneable{
+	
+	
 	private String title;
 	private String author;
 	private int price;
@@ -39,7 +41,12 @@ public class Book implements Cloneable{
 	public int getEdition(){
 		return edition;
 	}
-	public boolean equals(Book book){
+	
+	@Override
+	public boolean equals(Object object){
+		if(!(object instanceof Book))
+			return false;
+		Book book = (Book)object;
 		if(!(this.title.equals(book.getTitle())))
 				return false;
 		if(!(this.author.equals(book.getAuthor())))
@@ -48,9 +55,10 @@ public class Book implements Cloneable{
 			return false;
 		if(this.edition != book.getEdition())
 			return false;
-		return true;
+		return true;		
 	}
 	
+	@Override
 	public int hashCode(){
 		int res = 0;
 		for(int i =0 ;i<title.length(); i++)
@@ -62,6 +70,7 @@ public class Book implements Cloneable{
 		return res;
 	}
 	
+	@Override
 	public String toString(){
 		String res = "Title: \""+title+"\", ";
 		res += "Author: \""+author+"\", ";
@@ -70,6 +79,7 @@ public class Book implements Cloneable{
 		return res;
 	}
 	
+	@Override
 	public Book clone(){
 		Book cloneBook = new Book();
 		cloneBook.setAuthor(author);

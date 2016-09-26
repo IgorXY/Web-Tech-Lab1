@@ -2,13 +2,21 @@ package Test;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+import org.junit.Before;
 import org.junit.Test;
 
+import Comparator.*;
 import Logic.Book;
+
 
 public class BookTestCase {
 	Book book1 = new Book();
 	Book book2 = new Book();
+	ArrayList<Book> bookArray = new ArrayList<Book>();
 	@Test
 	public void TestRightHash() {
 		book1.setAuthor("");
@@ -68,4 +76,90 @@ public class BookTestCase {
 		book2 = book1.clone();
 		assertTrue(book1.equals(book2));
 	}
+	
+	public static void FillArray(ArrayList<Book> bookArray) {
+		Book book1 = new Book();
+		book1.setAuthor("Igor");
+		book1.setTitle("Java for students");
+		book1.setPrice(50000);
+		book1.setEdition(1);
+		bookArray.add(book1);
+		book1 = new Book();
+		book1.setAuthor("Igor");
+		book1.setTitle("C# for students");
+		book1.setPrice(50000);
+		book1.setEdition(1);
+		bookArray.add(book1);
+		book1 = new Book();
+		book1.setAuthor("Igor");
+		book1.setTitle("Delphi for students");
+		book1.setPrice(50000);
+		book1.setEdition(1);
+		bookArray.add(book1);
+		book1 = new Book();
+		book1.setAuthor("Igor");
+		book1.setTitle("Assembler for students");
+		book1.setPrice(50000);
+		book1.setEdition(1);
+		bookArray.add(book1);
+		book1 = new Book();
+		book1.setAuthor("Igor");
+		book1.setTitle("PHP for students");
+		book1.setPrice(50000);
+		book1.setEdition(1);
+		bookArray.add(book1);
+	}
+	
+	@Test
+	public void TestSortTitle() {
+		FillArray(bookArray);
+		bookArray.sort(new TitleComparator());		
+		assertTrue(bookArray.get(0).getTitle().equals("Assembler for students"));
+	}
+	
+	@Test
+	public void TestSortTitleAuthor() {
+		FillArray(bookArray);
+		book1 = new Book();
+		book1.setAuthor("Vasya");
+		book1.setTitle("Assembler for students");
+		book1.setPrice(50000);
+		book1.setEdition(1);
+		bookArray.add(book1);
+		bookArray.sort(new TitleAuthorComparator());		
+		assertTrue(bookArray.get(0).getAuthor().equals("Igor"));
+	}
+	
+	@Test
+	public void TestSortAuthorTitle() {
+		FillArray(bookArray);
+		book1 = new Book();
+		book1.setAuthor("Asya");
+		book1.setTitle("SQL for students");
+		book1.setPrice(50000);
+		book1.setEdition(1);
+		bookArray.add(book1);
+		bookArray.sort(new AuthorTitleComparator());		
+		assertTrue(bookArray.get(0).getAuthor().equals("Asya"));
+	}
+	
+	@Test
+	public void TestSortAuthorTitlePrice() {
+		FillArray(bookArray);
+		book1 = new Book();
+		book1.setAuthor("Asya");
+		book1.setTitle("SQL for students");
+		book1.setPrice(50000);
+		book1.setEdition(1);
+		bookArray.add(book1);
+		book1 = new Book();
+		book1.setAuthor("Asya");
+		book1.setTitle("SQL for students");
+		book1.setPrice(10000);
+		book1.setEdition(1);
+		bookArray.add(book1);
+		bookArray.sort(new AuthorTitlePriceComparator());		
+		assertTrue(bookArray.get(0).getPrice() == 10000);
+	}
+	
 }
