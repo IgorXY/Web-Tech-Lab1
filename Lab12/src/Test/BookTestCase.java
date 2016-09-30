@@ -83,30 +83,35 @@ public class BookTestCase {
 		book1.setTitle("Java for students");
 		book1.setPrice(50000);
 		book1.setEdition(1);
+		book1.setIsbn(6);
 		bookArray.add(book1);
 		book1 = new Book();
 		book1.setAuthor("Igor");
 		book1.setTitle("C# for students");
 		book1.setPrice(50000);
 		book1.setEdition(1);
+		book1.setIsbn(1);
 		bookArray.add(book1);
 		book1 = new Book();
 		book1.setAuthor("Igor");
 		book1.setTitle("Delphi for students");
 		book1.setPrice(50000);
 		book1.setEdition(1);
+		book1.setIsbn(3);
 		bookArray.add(book1);
 		book1 = new Book();
 		book1.setAuthor("Igor");
 		book1.setTitle("Assembler for students");
 		book1.setPrice(50000);
 		book1.setEdition(1);
+		book1.setIsbn(10);
 		bookArray.add(book1);
 		book1 = new Book();
 		book1.setAuthor("Igor");
 		book1.setTitle("PHP for students");
 		book1.setPrice(50000);
 		book1.setEdition(1);
+		book1.setIsbn(8);
 		bookArray.add(book1);
 	}
 	
@@ -160,6 +165,13 @@ public class BookTestCase {
 		bookArray.add(book1);
 		bookArray.sort(new AuthorTitlePriceComparator());		
 		assertTrue(bookArray.get(0).getPrice() == 10000);
+	}
+	
+	@Test
+	public void TestSortDefault(){
+		FillArray(bookArray);
+		bookArray.sort(null);
+		assertTrue(bookArray.get(0).getIsbn() == 1);
 	}
 	
 }

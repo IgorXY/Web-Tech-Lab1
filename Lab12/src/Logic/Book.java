@@ -1,12 +1,13 @@
 package Logic;
 
-public class Book implements Cloneable{
+public class Book implements Cloneable, Comparable{
 	
 	
 	private String title;
 	private String author;
 	private int price;
-	private static int edition;
+	private int edition;
+	private int isbn;
 	
 	public void setTitle(String title){
 		this.title = title;
@@ -40,6 +41,15 @@ public class Book implements Cloneable{
 	
 	public int getEdition(){
 		return edition;
+	}
+	
+	public void setIsbn(int isbn){
+		if(isbn>0)
+			this.isbn = isbn;
+	}
+	
+	public int getIsbn(){
+		return isbn;
 	}
 	
 	@Override
@@ -87,6 +97,16 @@ public class Book implements Cloneable{
 		cloneBook.setPrice(price);
 		cloneBook.setTitle(title);
 		return cloneBook;
+	}
+
+	@Override
+	public int compareTo(Object obj) {
+		Book book = (Book)obj;
+		if(isbn>book.getIsbn())
+			return 1;
+		if(isbn==book.getIsbn())
+			return 0;
+		return -1;
 	}
 
 }
